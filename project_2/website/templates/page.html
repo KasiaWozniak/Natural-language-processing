@@ -3,8 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <title>Flask</title>
+    <script>
+        function showForm(type) {
+            document.getElementById('pronoun-form').style.display = type === 'pronoun' ? 'block' : 'none';
+            document.getElementById('noun-phrase-form').style.display = type === 'noun-phrase' ? 'block' : 'none';
+        }
+
+        function handleNounPhraseAdjective() {
+            const withAdjective = document.getElementById('with-adjective').checked;
+            document.getElementById('adjective-field').style.display = withAdjective ? 'block' : 'none';
+        }
+    </script>
 </head>
 <body>
-   <h1>Welcome to Flask</h1>
+   <h1>Choose a subject</h1>
+
+   <button onclick="showForm('pronoun')">Pronoun</button>
+   <button onclick="showForm('noun-phrase')">Noun Phrase</button>
+
+   <!-- Pronoun Form -->
+   <form id="pronoun-form" action="/submit" method="POST" style="display:none;">
+       <input type="hidden" name="noun_phrase" value="false">
+       <h2>Pronoun</h2>
+       <label for="number">Number:</label>
+       <select name="number" id="number">
+           <option value="singular">Singular</option>
+           <option value="plural">Plural</option>
+       </select>
+
+       <div id="singular-pronoun">
+           <h3>Singular Pronouns</h3>
+           <select name="pronoun_or_article">
+               <option value="I">I</option>
+               <option value="you">You</option>
+               <option value="he">He</option>
+               <option value="she">She</option>
+               <option value="it">It</option>
+               <option value="this">This</option>
+               <option value="that">That</option>
+           </select>
+       </div>
+
+       <div id="plural-pronoun">
+           <h3>Plural Pronouns</h3>
+           <select name="pronoun_or_article">
+               <option value="we">We</option>
+               <option value="you">You</option>
+               <option value="they">They</option>
+               <option value="these">These</option>
+               <option value="those">Those</option>
+           </select>
+       </div>
+       <button type="submit">Submit</button>
+   </form>
+
+   <!-- Noun Phrase Form -->
+   <form id="noun-phrase-form" action="/submit" method="POST" style="display:none;">
+       <input type="hidden" name="noun_phrase" value="true">
+       <h2>Noun Phrase</h2>
+       <label for="number">Number:</label>
+       <select name="number" id="number">
+           <option value="singular">Singular</option>
+           <option value="plural">Plural</option>
+       </select>
+
+       <div id="singular-noun">
+           <h3>Singular Noun Phrases</h3>
+           <select name="pronoun_or_article">
+               <option value="my">My</option>
+               <option value="your">Your</option>
+               <option value="his">His</option>
+               <option value="her">Her</option>
+               <option value="its">Its</option>
+               <option value="our">Our</option>
+               <option value="their">Their</option>
+               <option value="this">This</option>
+               <option value="that">That</option>
+               <option value="indefinite article">Indefinite Article</option>
+               <option value="definite article">Definite Article</option>
+           </select>
+       </div>
+
+       <div id="plural-noun">
+           <h3>Plural Noun Phrases</h3>
+           <select name="pronoun_or_article">
+               <option value="my">My</option>
+               <option value="your">Your</option>
+               <option value="his">His</option>
+               <option value="her">Her</option>
+               <option value="its">Its</option>
+               <option value="our">Our</option>
+               <option value="their">Their</option>
+               <option value="these">These</option>
+               <option value="those">Those</option>
+               <option value="definite article">Definite Article</option>
+               <option value="without any pronoun or article">Without Any Pronoun or Article</option>
+           </select>
+       </div>
+
+       <h3>With Adjective?</h3>
+       <label for="with-adjective">Yes</label>
+       <input type="radio" name="adjective" id="with-adjective" value="true" onclick="handleNounPhraseAdjective()">
+       <label for="without-adjective">No</label>
+       <input type="radio" name="adjective" id="without-adjective" value="false" onclick="handleNounPhraseAdjective()">
+
+       <div id="adjective-field" style="display:none;">
+           <label for="adjective">Enter Adjective:</label>
+           <input type="text" id="adjective" name="adjective_text">
+       </div>
+
+       <button type="submit">Submit</button>
+   </form>
 </body>
 </html>
