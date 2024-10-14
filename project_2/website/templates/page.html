@@ -47,7 +47,7 @@
 
     <!-- Pronoun Number Choice -->
     <div id="pronoun-number-choice" style="display:none;">
-        <h2>Select Number for Pronoun</h2>
+        <h2>Select Number</h2>
         <button onclick="showPronounForm('singular')">Singular</button>
         <button onclick="showPronounForm('plural')">Plural</button>
     </div>
@@ -56,7 +56,7 @@
     <form id="pronoun-form-singular" action="/submit" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="false">
         <input type="hidden" name="number" value="singular">
-        <h2>Singular Pronouns</h2>
+        <h2>Singular Options</h2>
         <select name="pronoun_or_article">
             <option value="I">I</option>
             <option value="you">You</option>
@@ -66,6 +66,31 @@
             <option value="this">This</option>
             <option value="that">That</option>
         </select>
+
+        <!-- Tense Selection -->
+        <h3>Choose the tense</h3>
+        <select name="tense">
+            <option value="Present Simple">Present Simple</option>
+            <option value="Present Continuous">Present Continuous</option>
+            <option value="Present Perfect">Present Perfect</option>
+            <option value="Present Perfect Continuous">Present Perfect Continuous</option>
+            <option value="Past Simple">Past Simple</option>
+            <option value="Past Continuous">Past Continuous</option>
+            <option value="Past Perfect">Past Perfect</option>
+            <option value="Past Perfect Continuous">Past Perfect Continuous</option>
+            <option value="Future Simple">Future Simple</option>
+            <option value="Future Continuous">Future Continuous</option>
+            <option value="Future Perfect">Future Perfect</option>
+            <option value="Future Perfect Continuous">Future Perfect Continuous</option>
+        </select>
+
+        <!-- Mood Selection -->
+        <h3>Choose the mood</h3>
+        <select name="mood">
+            <option value="positive">Positive</option>
+            <option value="negative">Negative</option>
+        </select>
+
         <button type="submit">Submit</button>
     </form>
 
@@ -73,7 +98,7 @@
     <form id="pronoun-form-plural" action="/submit" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="false">
         <input type="hidden" name="number" value="plural">
-        <h2>Plural Pronouns</h2>
+        <h2>Plural Options</h2>
         <select name="pronoun_or_article">
             <option value="we">We</option>
             <option value="you">You</option>
@@ -81,12 +106,37 @@
             <option value="these">These</option>
             <option value="those">Those</option>
         </select>
+
+        <!-- Tense Selection -->
+        <h3>Choose the tense</h3>
+        <select name="tense">
+            <option value="Present Simple">Present Simple</option>
+            <option value="Present Continuous">Present Continuous</option>
+            <option value="Present Perfect">Present Perfect</option>
+            <option value="Present Perfect Continuous">Present Perfect Continuous</option>
+            <option value="Past Simple">Past Simple</option>
+            <option value="Past Continuous">Past Continuous</option>
+            <option value="Past Perfect">Past Perfect</option>
+            <option value="Past Perfect Continuous">Past Perfect Continuous</option>
+            <option value="Future Simple">Future Simple</option>
+            <option value="Future Continuous">Future Continuous</option>
+            <option value="Future Perfect">Future Perfect</option>
+            <option value="Future Perfect Continuous">Future Perfect Continuous</option>
+        </select>
+
+        <!-- Mood Selection -->
+        <h3>Choose the mood</h3>
+        <select name="mood">
+            <option value="positive">Positive</option>
+            <option value="negative">Negative</option>
+        </select>
+
         <button type="submit">Submit</button>
     </form>
 
     <!-- Noun Phrase Number Choice -->
     <div id="noun-phrase-number-choice" style="display:none;">
-        <h2>Select Number for Noun Phrase</h2>
+        <h2>Select Number</h2>
         <button onclick="showNounPhraseForm('singular')">Singular</button>
         <button onclick="showNounPhraseForm('plural')">Plural</button>
     </div>
@@ -95,7 +145,7 @@
     <form id="noun-phrase-form-singular" action="/submit" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="true">
         <input type="hidden" name="number" value="singular">
-        <h2>Singular Noun Phrase</h2>
+        <h2>Singular Options</h2>
         <select name="pronoun_or_article">
             <option value="my">My</option>
             <option value="your">Your</option>
@@ -121,6 +171,30 @@
             <input type="text" id="adjective" name="adjective_text">
         </div>
 
+        <!-- Tense Selection -->
+        <h3>Choose the tense</h3>
+        <select name="tense">
+            <option value="Present Simple">Present Simple</option>
+            <option value="Present Continuous">Present Continuous</option>
+            <option value="Present Perfect">Present Perfect</option>
+            <option value="Present Perfect Continuous">Present Perfect Continuous</option>
+            <option value="Past Simple">Past Simple</option>
+            <option value="Past Continuous">Past Continuous</option>
+            <option value="Past Perfect">Past Perfect</option>
+            <option value="Past Perfect Continuous">Past Perfect Continuous</option>
+            <option value="Future Simple">Future Simple</option>
+            <option value="Future Continuous">Future Continuous</option>
+            <option value="Future Perfect">Future Perfect</option>
+            <option value="Future Perfect Continuous">Future Perfect Continuous</option>
+        </select>
+
+        <!-- Mood Selection -->
+        <h3>Choose the mood</h3>
+        <select name="mood">
+            <option value="positive">Positive</option>
+            <option value="negative">Negative</option>
+        </select>
+
         <button type="submit">Submit</button>
     </form>
 
@@ -128,7 +202,7 @@
     <form id="noun-phrase-form-plural" action="/submit" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="true">
         <input type="hidden" name="number" value="plural">
-        <h2>Plural Noun Phrase</h2>
+        <h2>Plural Options</h2>
         <select name="pronoun_or_article">
             <option value="my">My</option>
             <option value="your">Your</option>
@@ -153,6 +227,30 @@
             <label for="adjective">Enter Adjective:</label>
             <input type="text" id="adjective" name="adjective_text">
         </div>
+
+        <!-- Tense Selection -->
+        <h3>Choose the tense</h3>
+        <select name="tense">
+            <option value="Present Simple">Present Simple</option>
+            <option value="Present Continuous">Present Continuous</option>
+            <option value="Present Perfect">Present Perfect</option>
+            <option value="Present Perfect Continuous">Present Perfect Continuous</option>
+            <option value="Past Simple">Past Simple</option>
+            <option value="Past Continuous">Past Continuous</option>
+            <option value="Past Perfect">Past Perfect</option>
+            <option value="Past Perfect Continuous">Past Perfect Continuous</option>
+            <option value="Future Simple">Future Simple</option>
+            <option value="Future Continuous">Future Continuous</option>
+            <option value="Future Perfect">Future Perfect</option>
+            <option value="Future Perfect Continuous">Future Perfect Continuous</option>
+        </select>
+
+        <!-- Mood Selection -->
+        <h3>Choose the mood</h3>
+        <select name="mood">
+            <option value="positive">Positive</option>
+            <option value="negative">Negative</option>
+        </select>
 
         <button type="submit">Submit</button>
     </form>
