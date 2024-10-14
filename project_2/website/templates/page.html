@@ -33,10 +33,10 @@
             }
         }
 
-        function handleNounPhraseAdjective() {
-            const withAdjective = document.getElementById('with-adjective').checked;
-            document.getElementById('adjective-field').style.display = withAdjective ? 'block' : 'none';
-        }
+        // function handleNounPhraseAdjective() {
+        //     const withAdjective = document.getElementById('with-adjective').checked;
+        //     document.getElementById('adjective-field').style.display = withAdjective ? 'block' : 'none';
+        // }
     </script>
 </head>
 <body>
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Pronoun Form Singular -->
-    <form id="pronoun-form-singular" action="/submit" method="POST" style="display:none;">
+    <form id="pronoun-form-singular" action="#" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="false">
         <input type="hidden" name="number" value="singular">
         <h2>Singular Options</h2>
@@ -95,7 +95,7 @@
     </form>
 
     <!-- Pronoun Form Plural -->
-    <form id="pronoun-form-plural" action="/submit" method="POST" style="display:none;">
+    <form id="pronoun-form-plural" action="#" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="false">
         <input type="hidden" name="number" value="plural">
         <h2>Plural Options</h2>
@@ -142,7 +142,7 @@
     </div>
 
     <!-- Noun Phrase Form Singular -->
-    <form id="noun-phrase-form-singular" action="/submit" method="POST" style="display:none;">
+    <form id="noun-phrase-form-singular" action="#" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="true">
         <input type="hidden" name="number" value="singular">
         <h2>Singular Options</h2>
@@ -162,14 +162,9 @@
 
         <h3>With Adjective?</h3>
         <label for="with-adjective">Yes</label>
-        <input type="radio" name="adjective" id="with-adjective" value="true" onclick="handleNounPhraseAdjective()">
-        <label for="without-adjective">No</label>
-        <input type="radio" name="adjective" id="without-adjective" value="false" onclick="handleNounPhraseAdjective()">
-
-        <div id="adjective-field" style="display:none;">
-            <label for="adjective">Enter Adjective:</label>
-            <input type="text" id="adjective" name="adjective_text">
-        </div>
+        <input type="radio" name="adjective" id="with-adjective" value="true">
+        <label for="with-adjective">No</label>
+        <input type="radio" name="adjective" id="with-adjective" value="false">
 
         <!-- Tense Selection -->
         <h3>Choose the tense</h3>
@@ -199,7 +194,7 @@
     </form>
 
     <!-- Noun Phrase Form Plural -->
-    <form id="noun-phrase-form-plural" action="/submit" method="POST" style="display:none;">
+    <form id="noun-phrase-form-plural" action="#" method="POST" style="display:none;">
         <input type="hidden" name="noun_phrase" value="true">
         <input type="hidden" name="number" value="plural">
         <h2>Plural Options</h2>
@@ -219,14 +214,9 @@
 
         <h3>With Adjective?</h3>
         <label for="with-adjective">Yes</label>
-        <input type="radio" name="adjective" id="with-adjective" value="true" onclick="handleNounPhraseAdjective()">
-        <label for="without-adjective">No</label>
-        <input type="radio" name="adjective" id="without-adjective" value="false" onclick="handleNounPhraseAdjective()">
-
-        <div id="adjective-field" style="display:none;">
-            <label for="adjective">Enter Adjective:</label>
-            <input type="text" id="adjective" name="adjective_text">
-        </div>
+        <input type="radio" name="adjective" id="with-adjective" value="true">
+        <label for="with-adjective">No</label>
+        <input type="radio" name="adjective" id="with-adjective" value="false">
 
         <!-- Tense Selection -->
         <h3>Choose the tense</h3>
