@@ -1,7 +1,7 @@
 import json
-
 from flask import render_template, Blueprint, request, redirect, url_for
-from project_2.choose_random_word import *
+from project_2.website.services.generate_subject import *
+
 
 views = Blueprint('views', __name__)
 
@@ -23,7 +23,11 @@ def index():
         else:
             adjective = False
 
-        arguments = {"pronoun": pronoun, "adjective": adjective, "number": number, "noun": noun, "tense": tense}
+        arguments = {"pronoun_or_article": pronoun,
+                     "adjective": adjective,
+                     "number": number,
+                     "noun": noun,
+                     "tense": tense}
         print(arguments)
 
         return redirect(url_for('views.sentence', arguments=json.dumps(arguments)))
@@ -35,15 +39,8 @@ def index():
 def sentence(arguments):
     arguments = json.loads(arguments)
     print(arguments)
-    sentence = arguments["pronoun"].capitalize()
 
-    if arguments["noun"]:
-        noun = random_noun()
-        if arguments["adjective"]:
-            adjective = random_adjective()
-            sentence += f' {adjective}'
-        sentence += f' {noun}'
-
+    subject = generate_subject(arguments)
     verb = random_verb()
 
-    return render_template('display.html', sentence=sentence)
+    return render_template('display.html', sentence=subject)
