@@ -2,7 +2,7 @@ apple
 banana
 orange
 pear
-grapes
+grape
 pineapple
 mango
 watermelon

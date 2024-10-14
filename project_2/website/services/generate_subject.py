@@ -4,7 +4,10 @@ from project_2.website.services.choose_random_word import *
 def generate_subject(arguments):
     if arguments["noun"]:
         noun = random_noun()
+        if arguments["number"] == "plural":
+            noun = plural_form(noun)
         adjective = random_adjective()
+
         article = arguments["pronoun_or_article"]
         if article == "indefinite_article":
             if arguments["adjective"]:
@@ -27,3 +30,10 @@ def get_article(word):
         return "An"
     else:
         return "A"
+
+
+def plural_form(noun):
+    if noun[-1] == 'y':
+        return noun[0:-1] + "ies"
+    else:
+        return noun + "s"

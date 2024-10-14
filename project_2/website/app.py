@@ -1,7 +1,7 @@
 import json
 from flask import render_template, Blueprint, request, redirect, url_for
 from project_2.website.services.generate_subject import *
-
+from project_2.website.services.generate_verb import generate_verb
 
 views = Blueprint('views', __name__)
 
@@ -41,6 +41,6 @@ def sentence(arguments):
     print(arguments)
 
     subject = generate_subject(arguments)
-    verb = random_verb()
+    sentence = generate_verb(subject, arguments["tense"], arguments["number"], arguments["pronoun_or_article"], arguments["noun"])
 
-    return render_template('display.html', sentence=subject)
+    return render_template('display.html', sentence=sentence)
