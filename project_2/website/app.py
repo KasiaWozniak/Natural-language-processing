@@ -6,33 +6,66 @@ from project_2.website.services.generate_verb import generate_verb
 views = Blueprint('views', __name__)
 
 
+# @views.route('/', methods=["GET", "POST"])
+# def index():
+#     if request.method == 'POST':
+#         pronoun = request.form.get("pronoun_or_article")
+#         number = request.form.get("number")
+#         tense = request.form.get("tense")
+#
+#         if request.form.get("noun_phrase") == "true":
+#             noun = True
+#         else:
+#             noun = False
+#
+#         if request.form.get("adjective") == "true":
+#             adjective = True
+#         else:
+#             adjective = False
+#
+#         arguments = {"pronoun_or_article": pronoun,
+#                      "adjective": adjective,
+#                      "number": number,
+#                      "noun": noun,
+#                      "tense": tense}
+#         print(arguments)
+#
+#         return redirect(url_for('views.sentence', arguments=json.dumps(arguments)))
+#
+#     return render_template('page.html')
+
+
 @views.route('/', methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
-        pronoun = request.form.get("pronoun_or_article")
-        number = request.form.get("number")
+        arguments = get_noun_phrase(request.form)
+        return redirect(url_for('views.predicate', arguments=json.dumps(arguments)))
+
+    return render_template('subject.html')
+
+
+@views.route('/predicate/<arguments>', methods=["GET", "POST"])
+def predicate(arguments):
+    arguments = json.loads(arguments)
+    if request.method == 'POST':
         tense = request.form.get("tense")
+        arguments["tense"] = tense
 
-        if request.form.get("noun_phrase") == "true":
-            noun = True
-        else:
-            noun = False
+        return redirect(url_for('views.complement', arguments=json.dumps(arguments)))
 
-        if request.form.get("adjective") == "true":
-            adjective = True
-        else:
-            adjective = False
+    return render_template('predicate.html')
 
-        arguments = {"pronoun_or_article": pronoun,
-                     "adjective": adjective,
-                     "number": number,
-                     "noun": noun,
-                     "tense": tense}
-        print(arguments)
+
+@views.route('/complement/<arguments>', methods=["GET", "POST"])
+def complement(arguments):
+    arguments = json.loads(arguments)
+    if request.method == 'POST':
+        complement = get_noun_phrase(request.form)
+        arguments["complement"] = complement
 
         return redirect(url_for('views.sentence', arguments=json.dumps(arguments)))
 
-    return render_template('page.html')
+    return render_template('complement.html')
 
 
 @views.route('/sentence/<arguments>')
@@ -41,6 +74,28 @@ def sentence(arguments):
     print(arguments)
 
     subject = generate_subject(arguments)
-    sentence = generate_verb(subject, arguments["tense"], arguments["number"], arguments["pronoun_or_article"], arguments["noun"])
+    complement = generate_subject(arguments["complement"])
+    sentence = generate_verb(subject, arguments["tense"], arguments["number"], arguments["pronoun_or_article"],
+                             arguments["noun"], complement)
 
     return render_template('display.html', sentence=sentence)
+
+
+def get_noun_phrase(form):
+    pronoun = form.get("pronoun_or_article")
+    number = form.get("number")
+
+    if form.get("noun_phrase") == "true":
+        noun = True
+    else:
+        noun = False
+
+    if form.get("adjective") == "true":
+        adjective = True
+    else:
+        adjective = False
+
+    return {"pronoun_or_article": pronoun,
+            "adjective": adjective,
+            "number": number,
+            "noun": noun}
