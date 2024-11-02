@@ -3,18 +3,20 @@ import textacy
 import pandas as pd
 from pypdf import PdfReader
 
-
-def pdf_to_string(file_path):
+def pdf_to_text_file(file_path, output_path):
     reader = PdfReader(file_path)
-    text = ""
-    for page in reader.pages:
-        text += page.extract_text()
-    return text
+    with open(output_path, "w", encoding="utf-8") as output_file:
+        for page in reader.pages:
+            text = page.extract_text()
+            if text:
+                output_file.write(text)
 
+file_path = "Tolkien.pdf"
+output_path = "Tolkien.txt"
+pdf_to_text_file(file_path, output_path)
 
-# file_path = "Tolkien.pdf"
-# pdf_text = pdf_to_string(file_path)
-# print(pdf_text)
+print("Text successfully saved to", output_path)
+
 
 nlp = spacy.load("en_core_web_sm")
 
