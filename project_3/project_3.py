@@ -1,31 +1,11 @@
 import spacy
 import textacy
-import pandas as pd
-from pypdf import PdfReader
-
-def pdf_to_text_file(file_path, output_path):
-    reader = PdfReader(file_path)
-    with open(output_path, "w", encoding="utf-8") as output_file:
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                output_file.write(text)
-
-file_path = "Tolkien.pdf"
-output_path = "Tolkien.txt"
-pdf_to_text_file(file_path, output_path)
-
-print("Text successfully saved to", output_path)
-
+import json
 
 nlp = spacy.load("en_core_web_sm")
 
-text = ("When Sebastian Thrun started working on self-driving cars at "
-        "Google in 2007, few people outside of the company took him "
-        "seriously. “I can tell you very senior CEOs of major American "
-        "car companies would shake my hand and turn away because I wasn’t "
-        "worth talking to,” said Thrun, in an interview with Recode earlier "
-        "this week.")
+with open('Tolkien.txt', 'r') as file:
+    text = file.read()
 doc = nlp(text)
 
 svo_list = list(textacy.extract.subject_verb_object_triples(doc))
@@ -36,6 +16,14 @@ for svo in svo_list:
     o = list(nlp(objects).noun_chunks)[0].root.text
     vo_list.append((v, o))
 
+# vo_list.append(('start', 'game'))
 for x in vo_list:
     print(x)
 
+verbs_and_nouns = dict()
+for v, o in vo_list:
+    verbs_and_nouns.setdefault(v, []).append(o)
+print(verbs_and_nouns)
+
+with open('file.txt', 'w') as file:
+    file.write(json.dumps(verbs_and_nouns))
