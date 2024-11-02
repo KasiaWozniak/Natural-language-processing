@@ -5,31 +5,58 @@ def generate_verb(subject, tense, number, mood, question, pronoun, noun, complem
     verb = random_verb()
 
     if tense == "present_simple":
-        verb = make_verb_simple(random_verb(), is_third_person(number, pronoun, noun), mood)
-    elif tense == "present_continuous":
-        verb = make_verb_continuous(random_verb(), get_be(pronoun, noun), mood)
-    elif tense == "present_perfect":
-        verb = make_verb_perfect(random_verb_3(), get_have(is_third_person(number, pronoun, noun)), mood)
-    elif tense == "present_perfect_continuous":
-        verb = make_verb_perfect_continuous(random_verb(), get_have(is_third_person(number, pronoun, noun)), mood)
-    elif tense == "past_simple":
-        verb = make_verb_past(mood)
-    elif tense == "past_continuous":
-        verb = make_verb_continuous(random_verb(), get_be_2(pronoun, noun), mood)
-    elif tense == "past_perfect":
-        verb = make_verb_perfect(random_verb_3(), "had", mood)
-    elif tense == "past_perfect_continuous":
-        verb = make_verb_perfect_continuous(random_verb(), "had", mood)
-    elif tense == "future_simple":
-        verb = make_verb_future(random_verb(), mood)
-    elif tense == "future_continuous":
-        verb = make_verb_future(make_verb_continuous(random_verb(), "be", True), mood)
-    elif tense == "future_perfect":
-        verb = make_verb_future(make_verb_perfect(random_verb_3(), "have", True), mood)
-    elif tense == "future_perfect_continuous":
-        verb = make_verb_future(make_verb_perfect_continuous(random_verb(), "have", True), mood)
+        third_person = is_third_person(number, pronoun, noun)
+        if question:
+            return make_simple_question(mood, verb, third_person, subject, complement)
+        return f"{subject.capitalize()} {make_verb_simple(random_verb(), third_person, mood)} {complement}."
 
-    return f"{subject.capitalize()} {verb} {complement}."
+    elif tense == "present_continuous":
+        before, after = make_verb_continuous(random_verb(), get_be(pronoun, noun))
+
+    elif tense == "present_perfect":
+        third_person = is_third_person(number, pronoun, noun)
+        before, after = get_have(third_person), random_verb_3()
+
+    elif tense == "present_perfect_continuous":
+        third_person = is_third_person(number, pronoun, noun)
+        before, after = make_verb_perfect_continuous(random_verb(), get_have(third_person))
+
+    elif tense == "past_simple":
+        if question:
+            return make_past_question(subject, complement, mood)
+        return f"{subject.capitalize()} {make_verb_past(mood)} {complement}."
+
+    elif tense == "past_continuous":
+        before, after = make_verb_continuous(random_verb(), get_be_2(pronoun, noun))
+
+    elif tense == "past_perfect":
+        before, after = "had", random_verb_3()
+
+    elif tense == "past_perfect_continuous":
+        before, after = make_verb_perfect_continuous(random_verb(), "had")
+
+    elif tense == "future_simple":
+        before, after = "will", random_verb()
+
+    elif tense == "future_continuous":
+        before, after = "will", " ".join(make_verb_continuous(random_verb(), "be"))
+
+    elif tense == "future_perfect":
+        before, after = "will", f"have {random_verb_3()}"
+
+    else:
+        before, after = "will", " ".join(make_verb_perfect_continuous(random_verb(), "have"))
+
+    if question:
+        if mood:
+            return f"{before.capitalize()} {subject} {after} {complement}?"
+        else:
+            return f"{before.capitalize()} {subject} not {after} {complement}?"
+    else:
+        if mood:
+            return f"{subject.capitalize()} {before} {after} {complement}."
+        else:
+            return f"{subject.capitalize()} {before} not {after} {complement}."
 
 
 def make_verb_simple(verb, third_person, mood):
@@ -43,6 +70,7 @@ def make_verb_simple(verb, third_person, mood):
         verb, addition = verb.split(" ")
     else:
         addition = None
+
     if third_person:
         if verb[-1] == "y":
             verb = verb[0:-1] + "ies"
@@ -50,60 +78,49 @@ def make_verb_simple(verb, third_person, mood):
             verb += "es"
         else:
             verb += "s"
+
     if addition:
         return f'{verb} {addition}'
     return verb
 
 
-def make_verb_continuous(verb, be, mood):
-    verb, addition = get_ing(verb)
-
+def make_simple_question(mood, verb, third_person, subject, complement):
     if not mood:
-        sentence = f'{be} not {verb}'
+        verb = f"not {verb}"
+    if third_person:
+        return f"Does {subject} {verb} {complement}?"
     else:
-        sentence = f'{be} {verb}'
-    if addition:
-        return sentence + f' {addition}'
-    return sentence
+        return f"Do {subject} {verb} {complement}?"
 
 
-def make_verb_perfect(verb, have, mood):
-    if not mood:
-        return f"{have} not {verb}"
-    return f"{have} {verb}"
-
-
-def make_verb_perfect_continuous(verb, have, mood):
+def make_verb_continuous(verb, be):
     verb, addition = get_ing(verb)
-    if not mood:
-        sentence = f"{have} not been {verb}"
-    else:
-        sentence = f"{have} been {verb}"
-
     if addition:
-        return sentence + f' {addition}'
-    return sentence
+        return be, f'{verb} {addition}'
+    return be, verb
 
 
-def make_verb_past_continuous(verb, third_person):
-    have = get_have(third_person)
+def make_verb_perfect_continuous(verb, have):
     verb, addition = get_ing(verb)
-
     if addition:
-        return f"{have} been {verb} {addition}"
-    return f"{have} been {verb}"
+        return have, f'been {verb} {addition}'
+    return have, f'been {verb}'
 
 
 def make_verb_past(mood):
     if not mood:
-        return f"did not {random_verb()}"
-    return random_verb_2()
+        verb = f"did not {random_verb()}"
+    else:
+        verb = random_verb_2()
+    return verb
 
 
-def make_verb_future(verb, mood):
+def make_past_question(subject, complement, mood):
     if not mood:
-        return f"will not {verb}"
-    return f"will {verb}"
+        verb = f"not {random_verb()}"
+    else:
+        verb = random_verb()
+    return f"Did {subject} {verb} {complement}?"
 
 
 def is_third_person(number, pronoun, noun):
