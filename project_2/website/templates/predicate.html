@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flask</title>
+    <title>Predicate</title>
     <style>
         /* Add styles for layout */
         .container {
@@ -44,6 +44,13 @@
                         <option value="positive">Positive</option>
                         <option value="negative">Negative</option>
                     </select>
+
+                    <h3>Is it question?</h3>
+                    <label for="is-question">Yes</label>
+                    <input type="radio" name="question" id="is-question" value="true">
+                    <label for="is-not-question">No</label>
+                    <input type="radio" name="question" id="is-not-question" value="false">
+
                 <br>
                 <button style="margin-top: 20px" type="submit">Submit</button>
             </form>

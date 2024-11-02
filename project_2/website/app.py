@@ -49,7 +49,20 @@ def predicate(arguments):
     arguments = json.loads(arguments)
     if request.method == 'POST':
         tense = request.form.get("tense")
+        mood = request.form.get("mood")
+        question = request.form.get("question")
+
         arguments["tense"] = tense
+
+        if mood == "positive":
+            arguments["mood"] = True
+        elif mood == "negative":
+            arguments["mood"] = False
+
+        if question == "true":
+            arguments["question"] = True
+        elif question == "false":
+            arguments["question"] = False
 
         return redirect(url_for('views.complement', arguments=json.dumps(arguments)))
 
@@ -75,8 +88,8 @@ def sentence(arguments):
 
     subject = generate_subject(arguments)
     complement = generate_subject(arguments["complement"])
-    sentence = generate_verb(subject, arguments["tense"], arguments["number"], arguments["pronoun_or_article"],
-                             arguments["noun"], complement)
+    sentence = generate_verb(subject, arguments["tense"], arguments["number"], arguments["mood"], arguments["question"],
+                             arguments["pronoun_or_article"], arguments["noun"], complement)
 
     return render_template('display.html', sentence=sentence)
 

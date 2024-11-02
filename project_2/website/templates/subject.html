@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flask</title>
+    <title>Subject</title>
     <style>
         /* Add styles for layout */
         .container {
@@ -15,6 +15,9 @@
         }
         h1, h2 {
             text-align: center;
+        }
+        button {
+            margin-top: 20px;
         }
     </style>
     <script>
@@ -55,8 +58,8 @@
     <div class="container">
         <!-- Form selection buttons -->
         <div class="form-section">
-            <button onclick="showForm('pronoun')">Pronoun</button>
-            <button onclick="showForm('noun-phrase')">Noun Phrase</button>
+            <button style="margin-top: 0px" onclick="showForm('pronoun')">Pronoun</button>
+            <button style="margin-top: 0px" onclick="showForm('noun-phrase')">Noun Phrase</button>
 
             <!-- Pronoun Number Choice -->
             <div id="pronoun-number-choice" style="display:none;">
@@ -79,6 +82,7 @@
                     <option value="this">This</option>
                     <option value="that">That</option>
                 </select>
+                <br>
                 <button type="submit">Submit</button>
             </form>
 
@@ -94,6 +98,7 @@
                     <option value="these">These</option>
                     <option value="those">Those</option>
                 </select>
+                <br>
                 <button type="submit">Submit</button>
             </form>
 
@@ -129,6 +134,7 @@
                 <input type="radio" name="adjective" id="with-adjective" value="true" onclick="handleNounPhraseAdjective()">
                 <label for="without-adjective">No</label>
                 <input type="radio" name="adjective" id="without-adjective" value="false" onclick="handleNounPhraseAdjective()">
+                <br>
                 <button type="submit">Submit</button>
             </form>
 

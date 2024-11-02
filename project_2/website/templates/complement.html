@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flask</title>
+    <title>Complement</title>
     <style>
         /* Add styles for layout */
         .container {
@@ -16,6 +16,9 @@
         }
         h2 {
             text-align: center;
+        }
+        button {
+            margin-top: 20px;
         }
     </style>
     <script>
@@ -71,14 +74,15 @@
                 <input type="hidden" name="number" value="singular">
                 <h2>Singular Options</h2>
                 <select name="pronoun_or_article">
-                    <option value="I">I</option>
-                    <option value="you">You</option>
-                    <option value="he">He</option>
-                    <option value="she">She</option>
-                    <option value="it">It</option>
-                    <option value="this">This</option>
-                    <option value="that">That</option>
+                    <option value="me">me</option>
+                    <option value="you">you</option>
+                    <option value="him">him</option>
+                    <option value="her">her</option>
+                    <option value="it">it</option>
+                    <option value="this">this</option>
+                    <option value="that">that</option>
                 </select>
+                <br>
                 <button type="submit">Submit</button>
             </form>
 
@@ -88,12 +92,13 @@
                 <input type="hidden" name="number" value="plural">
                 <h2>Plural Options</h2>
                 <select name="pronoun_or_article">
-                    <option value="we">We</option>
-                    <option value="you">You</option>
-                    <option value="they">They</option>
-                    <option value="these">These</option>
-                    <option value="those">Those</option>
+                    <option value="us">us</option>
+                    <option value="you">you</option>
+                    <option value="them">them</option>
+                    <option value="these">these</option>
+                    <option value="those">those</option>
                 </select>
+                <br>
                 <button type="submit">Submit</button>
             </form>
 
@@ -111,15 +116,15 @@
                 <input type="hidden" name="number" value="singular">
                 <h2>Singular Options</h2>
                 <select name="pronoun_or_article">
-                    <option value="my">My</option>
-                    <option value="your">Your</option>
-                    <option value="his">His</option>
-                    <option value="her">Her</option>
-                    <option value="its">Its</option>
-                    <option value="our">Our</option>
-                    <option value="their">Their</option>
-                    <option value="this">This</option>
-                    <option value="that">That</option>
+                    <option value="my">my</option>
+                    <option value="your">your</option>
+                    <option value="his">his</option>
+                    <option value="her">her</option>
+                    <option value="its">its</option>
+                    <option value="our">our</option>
+                    <option value="their">their</option>
+                    <option value="this">this</option>
+                    <option value="that">that</option>
                     <option value="indefinite_article">Indefinite Article</option>
                     <option value="the">Definite Article</option>
                 </select>
@@ -129,6 +134,7 @@
                 <input type="radio" name="adjective" id="with-adjective" value="true" onclick="handleNounPhraseAdjective()">
                 <label for="without-adjective">No</label>
                 <input type="radio" name="adjective" id="without-adjective" value="false" onclick="handleNounPhraseAdjective()">
+                <br>
                 <button type="submit">Submit</button>
             </form>
 
@@ -138,15 +144,15 @@
                 <input type="hidden" name="number" value="plural">
                 <h2>Plural Options</h2>
                 <select name="pronoun_or_article">
-                    <option value="my">My</option>
-                    <option value="your">Your</option>
-                    <option value="his">His</option>
-                    <option value="her">Her</option>
-                    <option value="its">Its</option>
-                    <option value="our">Our</option>
-                    <option value="their">Their</option>
-                    <option value="these">These</option>
-                    <option value="those">Those</option>
+                    <option value="my">my</option>
+                    <option value="your">your</option>
+                    <option value="his">his</option>
+                    <option value="her">her</option>
+                    <option value="its">its</option>
+                    <option value="our">our</option>
+                    <option value="their">their</option>
+                    <option value="these">these</option>
+                    <option value="those">those</option>
                     <option value="the">Definite Article</option>
                     <option value="">Without Any Pronoun or Article</option>
                 </select>
@@ -156,10 +162,10 @@
                 <input type="radio" name="adjective" id="with-adjective" value="true" onclick="handleNounPhraseAdjective()">
                 <label for="without-adjective">No</label>
                 <input type="radio" name="adjective" id="without-adjective" value="false" onclick="handleNounPhraseAdjective()">
+                <br>
                 <button type="submit">Submit</button>
             </form>
         </div>
-
 
     </div>
 </body>

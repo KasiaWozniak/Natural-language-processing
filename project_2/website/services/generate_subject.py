@@ -27,9 +27,9 @@ def generate_subject(arguments):
 
 def get_article(word):
     if word[0] in ('a', 'o', 'e', 'i', 'u', 'y'):
-        return "An"
+        return "an"
     else:
-        return "A"
+        return "a"
 
 
 def plural_form(noun):
