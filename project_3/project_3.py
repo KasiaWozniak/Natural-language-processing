@@ -6,7 +6,7 @@ nlp = spacy.load("en_core_web_sm")
 with open('Tolkien.txt', 'r', encoding="utf8") as file:
     text = file.read()
 
-nlp.max_length = 2913402
+nlp.max_length = 3051057
 doc = nlp(text)
 
 svo_list = list(textacy.extract.subject_verb_object_triples(doc))
@@ -21,9 +21,9 @@ for svo in svo_list:
 
 verbs_and_nouns = dict()
 for v, o in vo_list:
-    verbs_and_nouns.setdefault(v, []).append(o)
+    verbs_and_nouns.setdefault(v, set()).add(o)
 
-with open('verbs_and_nouns.txt', 'w', encoding="utf8") as file:
+with open('verbs_and_nouns_2.txt', 'w', encoding="utf8") as file:
     for v, o in verbs_and_nouns.items():
         o_string = ' '.join(o)
         file.write(f'{v}: {o_string}\n')
